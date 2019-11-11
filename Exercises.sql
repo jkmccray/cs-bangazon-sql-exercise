@@ -82,11 +82,27 @@
 --GROUP BY t.Name
 --ORDER BY COUNT(et.EmployeeId) DESC
 
--- 14. List all employees who do not have computers.
+---- 14. List all employees who do not have computers.
 --SELECT e.Id, e.FirstName, e.LastName
 --FROM Employee e
 --LEFT JOIN ComputerEmployee ce ON ce.EmployeeId = e.Id
 --WHERE ce.ComputerId IS NULL
+
+-- CORRECT ANSWER:
+--SELECT e.*
+--FROM Employee e
+--LEFT JOIN ComputerEmployee ce ON ce.EmployeeId = e.Id
+--where ce.id is null
+--	or e.id in (
+--		select ce.EmployeeId
+--		from ComputerEmployee ce
+--		where ce.UnassignDate is not null
+--				and ce.EmployeeId not in (
+--					select ce.EmployeeId
+--					from ComputerEmployee ce
+--					where ce.UnassignDate is null
+--				)
+--		)
 
 -- 15. List all employees along with their current computer information make and manufacturer combined into a field entitled ComputerInfo. If they do not have a computer, this field should say "N/A".
 --SELECT e.Id, e.FirstName, e.LastName, ISNULL(c.Make + c.Manufacturer, 'N/A') as ComputerInfo
@@ -126,7 +142,7 @@
 --ORDER BY COUNT(op.OrderId) DESC
 
 -- 21. Find the name of the customer who has made the most purchases
---SELECT TOP 1 c.FirstName, c.LastName, COUNT(o.Id) AS OrderCount
+--SELECT TOP 1 WITH TIES c.FirstName, c.LastName, COUNT(o.Id) AS OrderCount
 --FROM [Order] o
 --INNER JOIN Customer c on c.Id = o.CustomerId
 --GROUP BY c.Id, c.FirstName, c.LastName
@@ -140,8 +156,7 @@
 --GROUP BY pt.Id, pt.Name
 
 -- 23. List the total amount made from all sellers
-SELECT p.CustomerId, SUM(p.Price) as Total
-FROM Product p
-LEFT JOIN OrderProduct op ON p.Id = op.ProductId
-LEFT JOIN [Order] o ON o.Id = op.OrderId
-GROUP BY p.CustomerId
+--SELECT p.CustomerId, SUM(p.Price) as Total
+--FROM Product p
+--LEFT JOIN OrderProduct op ON p.Id = op.ProductId
+--GROUP BY p.CustomerId

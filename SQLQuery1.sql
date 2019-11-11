@@ -274,6 +274,7 @@ INSERT INTO ComputerEmployee (EmployeeId, ComputerId, AssignDate, UnassignDate) 
 INSERT INTO ComputerEmployee (EmployeeId, ComputerId, AssignDate, UnassignDate) VALUES (29, 32, '2019-08-01', null);
 INSERT INTO ComputerEmployee (EmployeeId, ComputerId, AssignDate, UnassignDate) VALUES (30, 33, '2019-08-01', null);
 INSERT INTO ComputerEmployee (EmployeeId, ComputerId, AssignDate, UnassignDate) VALUES (39, 40, '2019-08-01', null);
+INSERT INTO ComputerEmployee (EmployeeId, ComputerId, AssignDate, UnassignDate) VALUES (40, 40, '2019-08-01', '2019-08-02');
 
 
 
